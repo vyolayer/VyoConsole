@@ -43,7 +43,7 @@ export default function RootLayout({
                 ibmPlexSans.variable,
             )}
         >
-            <body>
+            <body cz-shortcut-listen="true">
                 <ThemeProvider
                     attribute="class"
                     defaultTheme="system"
