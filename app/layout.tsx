@@ -4,6 +4,10 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { Toaster } from "@/components/ui/sonner";
+import { QueryProvider } from "@/providers/QueryProvider";
+import { AuthBootstrap } from "@/features/auth/components/AuthBootstrap";
+import { AuthProvider } from "@/providers/AuthProvider";
 
 const ibmPlexSans = IBM_Plex_Sans({
     subsets: ["latin"],
@@ -50,7 +54,15 @@ export default function RootLayout({
                     enableSystem
                     disableTransitionOnChange
                 >
-                    <TooltipProvider>{children}</TooltipProvider>
+                    <QueryProvider>
+                        <AuthBootstrap>
+                            <AuthProvider>
+                                <TooltipProvider>
+                                    {children} <Toaster />
+                                </TooltipProvider>
+                            </AuthProvider>
+                        </AuthBootstrap>
+                    </QueryProvider>
                 </ThemeProvider>
             </body>
         </html>
