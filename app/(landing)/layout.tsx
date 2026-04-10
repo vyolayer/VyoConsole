@@ -1,3 +1,5 @@
+import { LandingHeader } from "@/components/landing";
+
 export default function LandingLayout({ children }: { children: React.ReactNode }) {
     return (
         <div className="landing-page relative min-h-screen overflow-auto">
@@ -7,7 +9,8 @@ export default function LandingLayout({ children }: { children: React.ReactNode 
                 <div className="landing-blob-2 absolute top-1/3 -right-20 h-125 w-125 rounded-full opacity-15 blur-[100px]" />
                 <div className="landing-blob-3 absolute bottom-1/4 -left-20 h-100 w-100 rounded-full opacity-10 blur-[80px]" />
             </div>
-            {children}
+            <LandingHeader />
+            <main>{children}</main>
         </div>
     );
 }
