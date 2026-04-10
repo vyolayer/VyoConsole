@@ -17,7 +17,7 @@ export function RegisterForm({ className, ...props }: React.ComponentProps<"form
 
     const form = useForm({
         defaultValues: {
-            fullName: "",
+            full_name: "",
             email: "",
             password: "",
             confirmPassword: "",
@@ -47,8 +47,8 @@ export function RegisterForm({ className, ...props }: React.ComponentProps<"form
 
                 {/* Name */}
                 <form.Field
-                    name="fullName"
-                    validators={{ onChange: registerSchema.shape.fullName }}
+                    name="full_name"
+                    validators={{ onChange: registerSchema.shape.full_name }}
                 >
                     {(field) => {
                         const isInvalid = field.state.meta.isTouched && !field.state.meta.isValid;

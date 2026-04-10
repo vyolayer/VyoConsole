@@ -2,6 +2,7 @@ import { apiClient } from "@/lib/api/client";
 import { TokenManager } from "@/lib/auth/TokenManager";
 import { TokenResponse } from "./types";
 import { RegisterInput } from "../schemas/RegisterSchema";
+import { IUser } from "../types/userType";
 
 export function registerApi(data: RegisterInput) {
     return apiClient.post("/iam/register", data);
@@ -16,7 +17,7 @@ export async function loginApi(data: { email: string; password: string }) {
 }
 
 export function getMeApi() {
-    return apiClient.get("/iam/me");
+    return apiClient.get<{ user: IUser }>("/iam/me");
 }
 
 export async function logoutApi() {
