@@ -1,17 +1,9 @@
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
-import { AuthGuard } from "@/features/auth/guards/AuthGuard";
-import { OrganizationHeader } from "@/features/organization/components/OrganizationHeader";
-import { OrganizationSidebar } from "@/features/organization/components/OrganizationSidebar";
+import { AuthGuard } from "@/features/auth/guards";
+
 export default function ProtectedLayout({ children }: { children: React.ReactNode }) {
     return (
         <AuthGuard>
-            <SidebarProvider>
-                <OrganizationSidebar />
-                <SidebarInset>
-                    <OrganizationHeader />
-                    <main className="flex-1 bg-background">{children}</main>
-                </SidebarInset>
-            </SidebarProvider>
+            <div className="flex-1 bg-background pt-0">{children}</div>
         </AuthGuard>
     );
 }

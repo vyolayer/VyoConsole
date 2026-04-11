@@ -1,6 +1,9 @@
 "use client";
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import Link from "next/link";
+import { Logo } from "@/components/Logo";
+import { HeaderLayer } from "@/components/header/HeaderLayer";
+import { useUser } from "@/hooks/useUser";
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -10,68 +13,36 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import {
-    SidebarMenu,
-    SidebarMenuButton,
-    SidebarMenuItem,
-    useSidebar,
-} from "@/components/ui/sidebar";
+import { UserAvatar } from "@/components/UserAvatar";
+import { BadgeCheckIcon, BellIcon, CreditCardIcon, LogOutIcon, SparklesIcon } from "lucide-react";
 import { useLogout } from "@/features/auth/hooks/useLogOut";
-import {
-    ChevronsUpDownIcon,
-    SparklesIcon,
-    BadgeCheckIcon,
-    CreditCardIcon,
-    BellIcon,
-    LogOutIcon,
-} from "lucide-react";
 
-export function NavUser({
-    user,
-}: {
-    user: {
-        name: string;
-        email: string;
-        avatar: string;
-    };
-}) {
-    const { isMobile } = useSidebar();
+export function DashboardHeader() {
+    const user = useUser();
     const { logout } = useLogout();
 
     return (
-        <SidebarMenu>
-            <SidebarMenuItem>
+        <HeaderLayer>
+            <div className="flex w-full max-w-7xl justify-between items-center">
+                <Link href="/" className="flex items-center gap-2">
+                    <Logo classname="-mb-1" />
+                    <h1 className="text-xl font-bold tracking-tight text-primary">VyoLayer</h1>
+                </Link>
+
                 <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        <SidebarMenuButton
-                            size="lg"
-                            className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
-                        >
-                            <Avatar className="h-8 w-8 rounded-lg">
-                                <AvatarImage src={user.avatar} alt={user.name} />
-                                <AvatarFallback className="rounded-lg">CN</AvatarFallback>
-                            </Avatar>
-                            <div className="grid flex-1 text-left text-sm leading-tight">
-                                <span className="truncate font-medium">{user.name}</span>
-                                <span className="truncate text-xs">{user.email}</span>
-                            </div>
-                            <ChevronsUpDownIcon className="ml-auto size-4" />
-                        </SidebarMenuButton>
+                    <DropdownMenuTrigger className="hover:cursor-pointer">
+                        <UserAvatar user={user} />
                     </DropdownMenuTrigger>
                     <DropdownMenuContent
                         className="w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg"
-                        side={isMobile ? "bottom" : "right"}
                         align="end"
                         sideOffset={4}
                     >
                         <DropdownMenuLabel className="p-0 font-normal">
                             <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
-                                <Avatar className="h-8 w-8 rounded-lg">
-                                    <AvatarImage src={user.avatar} alt={user.name} />
-                                    <AvatarFallback className="rounded-lg">CN</AvatarFallback>
-                                </Avatar>
+                                <UserAvatar user={user} />
                                 <div className="grid flex-1 text-left text-sm leading-tight">
-                                    <span className="truncate font-medium">{user.name}</span>
+                                    <span className="truncate font-medium">{user.full_name}</span>
                                     <span className="truncate text-xs">{user.email}</span>
                                 </div>
                             </div>
@@ -105,7 +76,7 @@ export function NavUser({
                         </DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>
-            </SidebarMenuItem>
-        </SidebarMenu>
+            </div>
+        </HeaderLayer>
     );
 }

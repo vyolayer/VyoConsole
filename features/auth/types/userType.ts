@@ -5,4 +5,11 @@ export interface IUser {
     status: string;
     is_email_verified: boolean;
     joined_at: string;
+    avatar: IAvatar;
+}
+
+export interface IAvatar {
+    url: string;
+    fallback_color: string;
+    fallback_char: string;
 }
