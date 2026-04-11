@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 
 import { useDashboard } from "@/features/dashboard/hooks/useDashboard";
-import { useDashboardSearchParams } from "@/features/organization/hooks/useDashboardSearchParams";
+import { useDashboardSearchParams } from "@/features/dashboard/hooks/useDashboardSearchParams";
 import { CreateOrganizationDialog } from "@/features/organization/components/CreateOrganizationDialog";
 
 import { Button } from "@/components/ui/button";

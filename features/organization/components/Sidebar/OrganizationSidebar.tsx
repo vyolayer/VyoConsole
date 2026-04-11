@@ -2,12 +2,15 @@
 
 import * as React from "react";
 
-import { NavUser } from "@/components/NavUser";
+import { NavUser } from "@/features/organization/components/Sidebar/NavUser";
 import {
     Sidebar,
     SidebarContent,
     SidebarFooter,
     SidebarHeader,
+    SidebarMenu,
+    SidebarMenuButton,
+    SidebarMenuItem,
     SidebarRail,
 } from "@/components/ui/sidebar";
 import {
@@ -21,11 +24,15 @@ import {
     FrameIcon,
     PieChartIcon,
     MapIcon,
+    PlusIcon,
 } from "lucide-react";
 import { useUser } from "@/hooks/useUser";
 import { OrganizationSwitcher } from "./OrganizationSwitcher";
 import { OrganizationNavMain } from "./OrganizationNavMain";
 import { OrganizationNavProjects } from "./OrganizationNavProjects";
+import { useOrganization } from "../../hooks/useOrganizations";
+import Link from "next/link";
+import { Logo } from "@/components/Logo";
 
 // This is sample data.
 const data = {
@@ -154,18 +161,24 @@ const data = {
 
 export function OrganizationSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     const user = useUser();
+    const { data } = useOrganization();
+
+    const organizations = data?.organizations || [];
 
     return (
         <Sidebar collapsible="icon" {...props}>
             <SidebarHeader>
-                <OrganizationSwitcher organizations={data.organizations} />
+                <div>
+                    <Logo />
+                    <OrganizationSwitcher organizations={organizations} />
+                </div>
             </SidebarHeader>
             <SidebarContent>
-                <OrganizationNavMain items={data.navMain} />
-                <OrganizationNavProjects projects={data.projects} />
+                {/* <OrganizationNavMain items={data.navMain} />
+                <OrganizationNavProjects projects={data.projects} /> */}
             </SidebarContent>
             <SidebarFooter>
-                <NavUser user={{ name: user?.full_name, email: user?.email, avatar: "" }} />
+                <NavUser user={user} />
             </SidebarFooter>
             <SidebarRail />
         </Sidebar>
