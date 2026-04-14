@@ -135,8 +135,11 @@ class ApiClient {
         });
     }
 
-    delete<T>(path: string, options?: RequestOptions) {
-        return this.request<T>("DELETE", path, options);
+    delete<T>(path: string, body?: unknown, options?: RequestOptions) {
+        return this.request<T>("DELETE", path, {
+            ...options,
+            body: JSON.stringify(body),
+        });
     }
 }
 
