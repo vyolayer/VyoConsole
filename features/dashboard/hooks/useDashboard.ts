@@ -1,7 +1,7 @@
-import { useOrganization } from "@/features/organization/hooks/useOrganizations";
+import { useOrganizations } from "@org/hooks/useOrganizations";
 
 export const useDashboard = () => {
-    const { data, isLoading } = useOrganization();
+    const { data, isLoading } = useOrganizations();
 
     return {
         isLoading,

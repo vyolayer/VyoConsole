@@ -1,9 +1,17 @@
 import { AuthGuard } from "@/features/auth/guards";
+import { organizationsQueryOptions } from "@/features/org/hooks/useOrganizations";
+import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
 
-export default function ProtectedLayout({ children }: { children: React.ReactNode }) {
+export default async function ProtectedLayout({ children }: { children: React.ReactNode }) {
+    const queryClient = new QueryClient();
+
+    await queryClient.prefetchQuery(organizationsQueryOptions);
+
     return (
-        <AuthGuard>
-            <div className="flex-1 bg-background pt-0">{children}</div>
-        </AuthGuard>
+        <HydrationBoundary state={dehydrate(queryClient)}>
+            <AuthGuard>
+                <div className="flex-1 bg-background pt-0">{children}</div>
+            </AuthGuard>
+        </HydrationBoundary>
     );
 }

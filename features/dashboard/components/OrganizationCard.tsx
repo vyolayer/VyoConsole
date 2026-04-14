@@ -12,22 +12,23 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 import { MoreVertical } from "lucide-react";
-import { IOrganization } from "@/features/organization/api/types";
+import { IOrganization } from "@org/types/organization.types";
+import { useSelectCurrentOrganization } from "@org/hooks/useOrganization";
 
 interface OrganizationCardProps {
     organization: IOrganization;
+    onClickOpen: (slug: string) => void;
 }
 
-export function OrganizationCard({ organization }: OrganizationCardProps) {
-    const router = useRouter();
+export function OrganizationCard({ organization, onClickOpen }: OrganizationCardProps) {
+    const handleOpen = () => {
+        onClickOpen(organization.slug);
+    };
 
     return (
         <Card className="hover:shadow-md transition cursor-pointer">
             <CardHeader className="flex flex-row items-start justify-between space-y-0">
-                <div
-                    onClick={() => router.push(`/org/${organization.slug}`)}
-                    className="flex flex-col"
-                >
+                <div onClick={handleOpen} className="flex flex-col">
                     <CardTitle className="text-base font-semibold">{organization.name}</CardTitle>
 
                     <p className="text-xs text-muted-foreground">{organization.slug}</p>
@@ -42,9 +43,7 @@ export function OrganizationCard({ organization }: OrganizationCardProps) {
                     </DropdownMenuTrigger>
 
                     <DropdownMenuContent align="end">
-                        <DropdownMenuItem onClick={() => router.push(`/org/${organization.slug}`)}>
-                            Open
-                        </DropdownMenuItem>
+                        <DropdownMenuItem onClick={handleOpen}>Open</DropdownMenuItem>
 
                         <DropdownMenuItem>Edit</DropdownMenuItem>
                         <DropdownMenuItem className="text-red-500">Delete</DropdownMenuItem>
@@ -52,10 +51,7 @@ export function OrganizationCard({ organization }: OrganizationCardProps) {
                 </DropdownMenu>
             </CardHeader>
 
-            <CardContent
-                onClick={() => router.push(`/org/${organization.slug}`)}
-                className="space-y-3"
-            >
+            <CardContent onClick={handleOpen} className="space-y-3">
                 {/* Description */}
                 <p className="text-sm text-muted-foreground line-clamp-2">
                     {organization.description || "No description"}
