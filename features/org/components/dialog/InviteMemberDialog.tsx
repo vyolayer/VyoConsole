@@ -18,7 +18,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { useOrganizationRoles } from "@org/hooks/useRoles";
 import { useInviteMember } from "@org/hooks/useInviteMember";
 import { inviteMemberSchema, InviteMemberInput } from "@org/schemas/InviteMemberSchema";
-import { useInvitationDialog } from "../../providers/InvitationProvider";
+import { useInvitationDialog } from "../../providers/InvitationDialogProvider";
 
 export function InviteMemberDialog() {
     const { open, onOpenChange } = useInvitationDialog();

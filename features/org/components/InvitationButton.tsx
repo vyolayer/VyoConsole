@@ -3,7 +3,7 @@
 import * as React from "react";
 import { PolicyGuard } from "../guards/PolicyGuard";
 import { Button } from "@/components/ui/button";
-import { useInvitationDialog } from "../providers/InvitationProvider";
+import { useInvitationDialog } from "../providers/InvitationDialogProvider";
 
 export const InvitationButton: React.FC = ({}) => {
     const { onOpenChange } = useInvitationDialog();
