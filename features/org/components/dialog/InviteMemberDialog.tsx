@@ -18,13 +18,10 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { useOrganizationRoles } from "@org/hooks/useRoles";
 import { useInviteMember } from "@org/hooks/useInviteMember";
 import { inviteMemberSchema, InviteMemberInput } from "@org/schemas/InviteMemberSchema";
+import { useInvitationDialog } from "../../providers/InvitationProvider";
 
-interface InviteMemberDialogProps {
-    open: boolean;
-    onOpenChange: (open: boolean) => void;
-}
-
-export function InviteMemberDialog({ open, onOpenChange }: InviteMemberDialogProps) {
+export function InviteMemberDialog() {
+    const { open, onOpenChange } = useInvitationDialog();
     const mutation = useInviteMember();
     const { roles } = useOrganizationRoles();
 
