@@ -38,7 +38,7 @@ export const InvitationRow = ({
 
             <TableCell>
                 <Link
-                    href={`/org/${orgSlug}/members/${inv.invited_by}`}
+                    href={`/console/${orgSlug}/members/${inv.invited_by}`}
                     className="text-primary hover:underline"
                 >
                     {invitedByName}

@@ -33,7 +33,7 @@ export const OrganizationInvitationsTable = ({
     }
 
     return (
-        <div className="rounded-md border">
+        <div>
             <Table>
                 <TableHeader>
                     <TableRow>

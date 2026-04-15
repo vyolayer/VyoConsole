@@ -1,17 +1,15 @@
 import { Metadata } from "next";
-import { DashboardHeader } from "@/features/dashboard/components/DashboardHeader";
-import { DashboardSubHeader } from "@/features/dashboard/components/DashboardSubHeader";
 import { AuthGuard } from "@/features/auth/guards";
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
 import { organizationsQueryOptions } from "@/features/org/hooks/useOrganizations";
 
 export const metadata: Metadata = {
-    title: "Dashboard | Vyolayer",
+    title: "Console | Vyolayer",
     description:
-        "Manage your organizations, projects, members, and permissions from a centralized dashboard. Monitor activity, control access, and scale your workspace efficiently.",
+        "Manage your organizations, projects, members, and permissions from a centralized Console. Monitor activity, control access, and scale your workspace efficiently.",
 
     keywords: [
-        "dashboard",
+        "Console",
         "organization management",
         "team management",
         "project management",
@@ -21,22 +19,22 @@ export const metadata: Metadata = {
     ],
 
     openGraph: {
-        title: "Dashboard | Vyolayer",
+        title: "Console | Vyolayer",
         description:
-            "Centralized dashboard to manage organizations, teams, projects, and permissions.",
-        // url: "https://yourdomain.com/dashboard",
+            "Centralized Console to manage organizations, teams, projects, and permissions.",
+        // url: "https://yourdomain.com/Console",
         siteName: "Vyolayer",
         type: "website",
     },
 
     twitter: {
         card: "summary_large_image",
-        title: "Dashboard | Vyolayer",
+        title: "Console | Vyolayer",
         description: "Manage your organizations, members, and projects from one place.",
     },
 
     robots: {
-        index: false, // 🔒 dashboard should NOT be indexed
+        index: false, // 🔒 Console should NOT be indexed
         follow: false,
     },
 };
@@ -49,12 +47,10 @@ export default async function ProtectedLayout({ children }: { children: React.Re
     return (
         <HydrationBoundary state={dehydrate(queryClient)}>
             <AuthGuard>
-                <DashboardHeader />
-                <div className="flex w-full items-center justify-center">
-                    <div className="flex w-full max-w-7xl flex-col gap-4 p-4">
-                        <DashboardSubHeader />
-                        <main className="flex-1 bg-background gap-4 p-4">{children}</main>
-                    </div>
+                <div className="min-h-screen relative flex flex-col bg-background">
+                    {/* Ambient Gradient Background */}
+                    <div className="absolute left-0 right-0 top-0 -z-10 h-[600px] w-full bg-linear-to-b from-primary/5 via-primary/5 to-transparent blur-3xl pointer-events-none opacity-60"></div>
+                    {children}
                 </div>
             </AuthGuard>
         </HydrationBoundary>

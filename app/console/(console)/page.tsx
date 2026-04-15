@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { Dashboard } from "@dashboard/components/Dashboard";
 import { CreateOrganizationDialog } from "@org/components/dialog/CreateOrganizationDialog";
 import { EmptyOrganization } from "@/features/dashboard/components/EmptyOrganization";
+import { DashboardSubHeader } from "@/features/dashboard/components/DashboardSubHeader";
 
 import { useDashboard } from "@dashboard/hooks/useDashboard";
 import { useDashboardSearchParams } from "@dashboard/hooks/useDashboardSearchParams";
@@ -30,27 +31,21 @@ export default function DashboardPage() {
         }
     }, [tab, action, router]);
 
-    if (!organizations || organizations.length === 0) {
-        return (
-            <>
-                <EmptyOrganization onCreateOrganization={handleCreateOrganization} />
-
-                <CreateOrganizationDialog
-                    open={openCreateOrganizationDialog}
-                    onOpenChange={setOpenCreateOrganizationDialog}
-                />
-            </>
-        );
-    }
+    const content = () => {
+        if (!organizations || organizations.length === 0) {
+            return <EmptyOrganization onCreateOrganization={handleCreateOrganization} />;
+        }
+        return <Dashboard organizations={organizations} />;
+    };
 
     return (
-        <>
-            <Dashboard organizations={organizations} />
+        <div>
+            <main className="flex-1 relative z-0 mt-4">{content()}</main>
 
             <CreateOrganizationDialog
                 open={openCreateOrganizationDialog}
                 onOpenChange={setOpenCreateOrganizationDialog}
             />
-        </>
+        </div>
     );
 }

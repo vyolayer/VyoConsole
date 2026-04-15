@@ -12,6 +12,12 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import {
+    Breadcrumb,
+    BreadcrumbItem,
+    BreadcrumbList,
+    BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
 import { UserAvatar } from "@/components/UserAvatar";
 import {
     BadgeCheckIcon,
@@ -19,27 +25,29 @@ import {
     CreditCardIcon,
     LogOutIcon,
     SparklesIcon,
-    SearchIcon,
     HelpCircleIcon,
 } from "lucide-react";
 import { useLogout } from "@/features/auth/hooks/useLogOut";
-import {
-    Breadcrumb,
-    BreadcrumbItem,
-    BreadcrumbList,
-    BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
 
-export function DashboardHeader() {
+export interface BreadcrumbItem {
+    label: string;
+    href?: string;
+}
+
+interface ConsoleOrgHeaderProps {
+    breadcrumbs: BreadcrumbItem[];
+}
+
+export function ConsoleOrgHeader({ breadcrumbs }: ConsoleOrgHeaderProps) {
     const user = useUser();
     const { logout } = useLogout();
 
     return (
         <HeaderLayer>
             <div className="flex w-full max-w-7xl justify-between items-center">
-                {/* Left: Breadcrumbs */}
-                <Breadcrumb className="flex items-center text-sm font-medium tracking-wide">
-                    <BreadcrumbList className="text-xl">
+                {/* Left: Dynamic Breadcrumbs */}
+                <Breadcrumb>
+                    <BreadcrumbList className="text-lg font-medium tracking-wide">
                         <BreadcrumbItem>
                             <Link
                                 href="/console"
@@ -48,14 +56,30 @@ export function DashboardHeader() {
                                 Console
                             </Link>
                         </BreadcrumbItem>
-                        <BreadcrumbSeparator />
-                        <BreadcrumbItem className="">Organizations</BreadcrumbItem>
+                        {breadcrumbs.map((crumb, i) => (
+                            <span key={i} className="flex items-center gap-2">
+                                <BreadcrumbSeparator />
+                                <BreadcrumbItem>
+                                    {crumb.href && i < breadcrumbs.length - 1 ? (
+                                        <Link
+                                            href={crumb.href}
+                                            className="text-[#a1a1aa] hover:text-white transition-colors capitalize"
+                                        >
+                                            {crumb.label}
+                                        </Link>
+                                    ) : (
+                                        <span className="text-white font-semibold">
+                                            {crumb.label}
+                                        </span>
+                                    )}
+                                </BreadcrumbItem>
+                            </span>
+                        ))}
                     </BreadcrumbList>
                 </Breadcrumb>
 
                 {/* Right: Actions */}
                 <div className="flex items-center gap-6">
-                    {/* <SearchIcon className="w-5 h-5 text-[#7b7b86] cursor-pointer hover:text-white transition-colors" /> */}
                     <BellIcon className="w-5 h-5 text-[#7b7b86] cursor-pointer hover:text-white transition-colors" />
                     <HelpCircleIcon className="w-5 h-5 text-[#7b7b86] cursor-pointer hover:text-white transition-colors" />
 
@@ -74,7 +98,7 @@ export function DashboardHeader() {
                                 <div className="flex items-center gap-3 text-sm">
                                     <UserAvatar user={user} className="w-8 h-8" />
                                     <div className="grid flex-1 text-left leading-tight">
-                                        <span className="truncate flex font-bold justify-between items-center text-[#00e5ff]">
+                                        <span className="truncate font-bold text-[#00e5ff]">
                                             {user.full_name}
                                         </span>
                                         <span className="truncate text-xs text-[#7b7b86]">

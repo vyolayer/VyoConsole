@@ -19,7 +19,7 @@ export const OrganizationMembersTable = ({ members }: { members: IOrganizationMe
 
     // ---------------- Main UI ----------------
     return (
-        <div className="rounded-md border">
+        <div>
             <Table>
                 <TableHeader>
                     <TableRow>

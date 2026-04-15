@@ -3,11 +3,11 @@
 import { useParams } from "next/navigation";
 
 export const useOrganizationParams = (): string => {
-    const { slug } = useParams();
+    const { orgSlug } = useParams();
 
-    if (slug === undefined) {
+    if (orgSlug === undefined) {
         throw new Error("Slug is undefined");
     }
 
-    return Array.isArray(slug) ? slug[0] : slug;
+    return Array.isArray(orgSlug) ? orgSlug[0] : orgSlug;
 };

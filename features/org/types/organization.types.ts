@@ -6,8 +6,9 @@ export type IOrganization = {
     is_active: boolean;
     owner_id: string;
     max_members: number;
-    max_projects: number;
     member_count: number;
+    max_projects: number;
+    project_count: number;
     created_at: Date;
     updated_at: Date;
 };
