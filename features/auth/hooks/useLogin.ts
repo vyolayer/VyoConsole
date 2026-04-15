@@ -11,7 +11,7 @@ export function useLogin() {
 
         onSuccess: () => {
             toast.success("Login successful");
-            router.push("/dashboard");
+            router.push("/console");
         },
 
         onError: (error: Error) => {

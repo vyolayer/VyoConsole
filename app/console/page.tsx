@@ -26,7 +26,7 @@ export default function DashboardPage() {
             // eslint-disable-next-line react-hooks/set-state-in-effect
             setOpenCreateOrganizationDialog(true);
             // clear search params
-            router.replace("/dashboard");
+            router.replace("/console");
         }
     }, [tab, action, router]);
 

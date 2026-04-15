@@ -19,7 +19,7 @@ export default function Home() {
 
     useEffect(() => {
         if (!isLoading && !isError && data) {
-            router.push("/dashboard");
+            router.push("/console");
         }
     }, [isLoading, isError, data, router]);
 

@@ -14,7 +14,7 @@ export function useCreateOrganization() {
         onSuccess: () => {
             toast.success("Organization created");
             queryClient.invalidateQueries({ queryKey: ORGANIZATION_QUERY_KEYS.list() });
-            router.push("/dashboard");
+            router.push("/console");
         },
 
         onError: (err: Error) => {

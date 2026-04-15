@@ -10,7 +10,7 @@ export function GuestGuard({ children }: { children: React.ReactNode }) {
 
     useEffect(() => {
         if (!isLoading && data) {
-            router.replace("/dashboard");
+            router.replace("/console");
         }
     }, [isLoading, data, router]);
 
