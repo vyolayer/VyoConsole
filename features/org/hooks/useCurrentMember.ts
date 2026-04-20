@@ -2,7 +2,7 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 
 import { memberApi } from "../api";
 import { ORGANIZATION_QUERY_KEYS } from "./queryKeys";
-import { useOrganizationBySlug } from "./useOrganization";
+import { useCurrentOrganization } from "./useCurrentOrganization";
 
 const useCurrentMemberQuery = (organization_id: string) => {
     return useSuspenseQuery({
@@ -12,11 +12,9 @@ const useCurrentMemberQuery = (organization_id: string) => {
 };
 
 export const useCurrentMember = () => {
-    const {
-        organization: { id: organization_id },
-    } = useOrganizationBySlug();
+    const { organization } = useCurrentOrganization();
 
-    const { data, ...rest } = useCurrentMemberQuery(organization_id);
+    const { data, ...rest } = useCurrentMemberQuery(organization.id);
 
     return { member: data, ...rest };
 };

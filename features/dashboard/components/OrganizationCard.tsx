@@ -40,7 +40,7 @@ export function OrganizationCard({ organization, onClickOpen }: OrganizationCard
 
     return (
         <Card
-            className="group flex flex-col justify-between p-6 cursor-pointer bg-[#141418] border-transparent hover:border-[#ffffff10] shadow-none transition-all duration-300 hover:bg-[#1a1a1f] rounded-2xl h-[320px]"
+            className="group flex flex-col justify-between p-6 cursor-pointer bg-[#141418] border-transparent hover:border-[#ffffff10] shadow-none transition-all duration-300 hover:bg-[#1a1a1f] rounded-2xl h-80"
             onClick={handleOpen}
         >
             <div className="space-y-6">

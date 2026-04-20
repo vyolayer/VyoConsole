@@ -4,6 +4,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
+const PROJECT_DETAIL_RE = /\/console\/[^/]+\/projects\/[^/]+/;
+
 const TABS = [
     { label: "Overview", path: "" },
     { label: "Projects", path: "/projects" },
@@ -17,6 +19,11 @@ interface OrgTabNavProps {
 }
 
 export function OrgTabNav({ orgSlug }: OrgTabNavProps) {
+    const pathname = usePathname();
+
+    // Don't render org tabs when inside a single-project context
+    if (PROJECT_DETAIL_RE.test(pathname)) return null;
+
     return (
         <div className="border-b border-[#ffffff08] w-full">
             <div className="flex w-full max-w-7xl mx-auto px-6 lg:px-8">

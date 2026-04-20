@@ -1,7 +1,7 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { invitationApi } from "../api";
 import { ORGANIZATION_QUERY_KEYS } from "./queryKeys";
-import { useOrganizationBySlug } from "./useOrganization";
+import { useCurrentOrganization } from "./useCurrentOrganization";
 
 export const organizationInvitationsQueryOptions = (id: string) => ({
     queryKey: ORGANIZATION_QUERY_KEYS.invitations(id),
@@ -13,7 +13,7 @@ const useOrganizationInvitationQueryFn = (id: string) => {
 };
 
 export const useOrganizationInvitations = () => {
-    const { organization } = useOrganizationBySlug();
+    const { organization } = useCurrentOrganization();
 
     const { data, ...rest } = useOrganizationInvitationQueryFn(organization.id);
 
