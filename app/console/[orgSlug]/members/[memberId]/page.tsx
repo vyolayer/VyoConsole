@@ -2,7 +2,6 @@
 
 import * as React from "react";
 import { useOrganizationMembers } from "@org/hooks/useMembers";
-import { useOrganizationParams } from "@org/hooks/useOrganizationParams";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Mail, Calendar, ShieldIcon, UserX } from "lucide-react";
@@ -35,7 +34,10 @@ export default function ConsoleMemberDetailPage({
             <div className="flex flex-col items-center justify-center h-64 gap-4">
                 <p className="text-[#7b7b86] text-sm">Member not found.</p>
                 <Link href={`/console/${orgSlug}/members`}>
-                    <Button variant="outline" className="border-[#ffffff10] text-[#a1a1aa] bg-transparent hover:bg-[#ffffff05] hover:text-white">
+                    <Button
+                        variant="outline"
+                        className="border-[#ffffff10] text-[#a1a1aa] bg-transparent hover:bg-[#ffffff05] hover:text-white"
+                    >
                         <ArrowLeft className="w-4 h-4 mr-2" />
                         Back to Members
                     </Button>

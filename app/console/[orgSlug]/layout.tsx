@@ -4,6 +4,7 @@ import { organizationQueryBySlugOptions } from "@org/hooks/useOrganization";
 import { InvitationDialogProvider } from "@/features/org/providers/InvitationDialogProvider";
 import { InviteMemberDialog } from "@/features/org/components/dialog/InviteMemberDialog";
 import { ConsoleOrgLayout } from "@/features/console/components/ConsoleOrgLayout";
+import { ProjectDialogProvider } from "@/features/project/components/provider/ProjectDialogProvider";
 
 type OrganizationLayoutProps = {
     children: React.ReactNode;
@@ -19,7 +20,9 @@ export default async function ConsoleOrgSlugLayout({ children, params }: Organiz
     return (
         <InvitationDialogProvider>
             <ConsoleOrgLayout orgSlug={orgSlug}>
-                <Suspense>{children}</Suspense>
+                <Suspense>
+                    <ProjectDialogProvider>{children}</ProjectDialogProvider>
+                </Suspense>
             </ConsoleOrgLayout>
             <InviteMemberDialog />
         </InvitationDialogProvider>
