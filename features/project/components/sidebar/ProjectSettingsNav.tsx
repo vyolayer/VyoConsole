@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { Settings, ChevronRight, KeyRound, ShieldAlert } from "lucide-react";
+import { Settings, ChevronRight, ShieldAlert } from "lucide-react";
 
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 
@@ -44,15 +44,6 @@ export function ProjectSettingsNav({ base }: { base: string }) {
                                 <SidebarMenuSubItem>
                                     <SidebarMenuSubButton asChild>
                                         <Link href={`${base}/settings`}>General</Link>
-                                    </SidebarMenuSubButton>
-                                </SidebarMenuSubItem>
-
-                                <SidebarMenuSubItem>
-                                    <SidebarMenuSubButton asChild>
-                                        <Link href={`${base}/settings?tab=api-keys`}>
-                                            <KeyRound className="h-4 w-4" />
-                                            API Keys
-                                        </Link>
                                     </SidebarMenuSubButton>
                                 </SidebarMenuSubItem>
 

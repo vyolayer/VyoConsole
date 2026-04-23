@@ -10,6 +10,7 @@ import { ProjectSettingsNav } from "./ProjectSettingsNav";
 import { IProjectManifestService } from "../../types/projectService.type";
 import { useProjectServices } from "../../hooks/useProjectServices";
 import { useProjectParams } from "../../hooks/useProjectParams";
+import { ProjectApiKeysNav } from "./ProjectApiKeysNav";
 
 interface ProjectSidebarProps {
     orgSlug: string;
@@ -31,6 +32,7 @@ export function ProjectSidebar({ orgSlug, projectName }: ProjectSidebarProps) {
                 <ProjectOverviewNav base={base} />
                 <ProjectServicesNav base={base} services={projectServices} />
                 <ProjectMembersNav base={base} />
+                <ProjectApiKeysNav base={base} />
                 <ProjectSettingsNav base={base} />
             </SidebarContent>
         </Sidebar>
