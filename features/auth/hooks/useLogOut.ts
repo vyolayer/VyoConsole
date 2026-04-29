@@ -11,10 +11,12 @@ export function useLogout() {
         mutationFn: logoutApi,
 
         onSuccess: () => {
-            queryClient.clear();
             toast.success("Logged out");
-            router.refresh();
-            router.push("/auth/login");
+
+            setTimeout(() => {
+                router.push("/auth/login");
+                queryClient.clear();
+            }, 1000);
         },
     });
 

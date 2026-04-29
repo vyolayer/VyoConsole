@@ -47,7 +47,7 @@ class ApiClient {
 
         if (!res.ok) {
             TokenManager.clear();
-            window.dispatchEvent(new Event("auth:logout"));
+            // window.dispatchEvent(new Event("auth:logout"));
             throw new Error("Session expired");
         }
 
