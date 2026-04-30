@@ -6,3 +6,6 @@ export const createOrganizationSchema = z.object({
 });
 
 export type CreateOrganizationInput = z.infer<typeof createOrganizationSchema>;
+
+export const updateOrganizationSchema = createOrganizationSchema.partial();
+export type UpdateOrganizationInput = Partial<CreateOrganizationInput>;

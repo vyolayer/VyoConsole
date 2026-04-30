@@ -13,7 +13,13 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { FormError } from "@/components/FormError";
 import { Field, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+} from "@/components/ui/dialog";
 
 import { useOrganizationRoles } from "@org/hooks/useRoles";
 import { useInviteMember } from "@org/hooks/useInviteMember";
@@ -50,6 +56,10 @@ export function InviteMemberDialog() {
             <DialogContent className="sm:max-w-md">
                 <DialogHeader>
                     <DialogTitle>Invite Member</DialogTitle>
+                    <DialogDescription>
+                        Invite a member to your organization. They will receive an email invitation
+                        to join.
+                    </DialogDescription>
                 </DialogHeader>
 
                 <form

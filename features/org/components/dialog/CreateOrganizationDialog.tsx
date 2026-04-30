@@ -6,7 +6,13 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { FormError } from "@/components/FormError";
 import { Textarea } from "@/components/ui/textarea";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+} from "@/components/ui/dialog";
 import { Field, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field";
 
 import {
@@ -46,6 +52,9 @@ export function CreateOrganizationDialog({ open, onOpenChange }: CreateOrganizat
             <DialogContent className="sm:max-w-106">
                 <DialogHeader>
                     <DialogTitle>Create Organization</DialogTitle>
+                    <DialogDescription>
+                        Make a new organization for your business.
+                    </DialogDescription>
                 </DialogHeader>
 
                 <form

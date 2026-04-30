@@ -1,5 +1,8 @@
 import { apiClient } from "@/lib/api/client";
-import { CreateOrganizationInput } from "../schemas/CreateOrganizationSchema";
+import {
+    CreateOrganizationInput,
+    UpdateOrganizationInput,
+} from "../schemas/CreateOrganizationSchema";
 import { IOrganization } from "../types/organization.types";
 import { IOrganizationMember } from "../types/member.types";
 import { DeleteOrganizationInput } from "../schemas/DeleteOrganizationSchema";
@@ -32,7 +35,7 @@ const getOrganizationBySlug = (
 
 const updateOrganization = (
     id: string, // organization id
-    data: Partial<CreateOrganizationInput>,
+    data: UpdateOrganizationInput,
 ) => apiClient.patch(`/organizations/${id}`, data);
 
 const deleteOrganization = (
